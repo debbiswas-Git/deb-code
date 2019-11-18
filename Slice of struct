@@ -1,0 +1,51 @@
+package main
+
+import "fmt"
+
+import "unsafe"
+
+type Location struct {
+	x, y ,z int
+	valid bool
+}
+
+func main() {
+	// Create empty slice of struct pointers.
+	places := []*Location{}
+
+	// Create struct and append it to the slice.
+	loc := new(Location)
+	/*loc.x = 10
+	loc.y = 20
+	loc.z=30 */
+	loc.valid = true
+
+	places = append(places, loc)
+
+	// Create another struct.
+	loc = new(Location)
+	/*loc.x = 5
+	loc.y = 8
+	loc.z=30*/
+	loc.valid = true
+
+	places = append(places, loc)
+
+	loc = new(Location)
+	loc.x = 50
+	loc.y = 80
+	loc.z=30 
+	loc.valid = true
+
+	places = append(places, loc)
+
+	// Loop over all indexes in the slice.
+	// ... Print all struct data.
+	for i := range places {
+		place := places[i]
+		fmt.Println("Location:", place)
+		fmt.Println("Location:", &place)
+		fmt.Println("Location:", unsafe.Sizeof(place))
+
+	}
+}
